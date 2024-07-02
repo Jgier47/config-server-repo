@@ -34,6 +34,9 @@ spring:
     password: guest
   zipkin:
     base-url: http://zipkin:9411
+  sleuth:
+    sampler:
+      probability: 1.0
   logging:
     pattern:
       level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
