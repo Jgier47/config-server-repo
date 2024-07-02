@@ -1,0 +1,78 @@
+spring:
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/employee_db
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:passwordToFill}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+      dialect: org.hibernate.dialect.MySQL8Dialect
+      show_sql: true
+      format_sql: true
+  server:
+    port: 8081
+  eureka:
+    client:
+      service-url:
+        defaultZone: http://localhost:8761/eureka/
+    instance:
+      lease-renewal-interval-in-seconds: 30
+      hostname: localhost
+  management:
+    tracing:
+      sampling:
+        probability: 1.0
+    endpoints:
+      web:
+        exposure:
+          include: "*"
+    health:
+      circuitbreakers:
+        enabled: true
+    endpoint:
+      health:
+        show-details: always
+  logging:
+    pattern:
+      level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+    level:
+      org.springframework.web: DEBUG
+  boot:
+    message: "Message example to test dynamic configuration changes in employee service. Spring Cloud Bus usage"
+
+# Actuator endpoints for Circuit Breaker
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+# Circuit breaker configuration
+resilience4j:
+  circuitbreaker:
+    circuitBreakerAspectOrder: 1
+    configs:
+      default:
+        register-health-indicator: true
+    instances:
+      DEPARTMENT-SERVICE:
+        failureRateThreshold: 50
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 10s
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 2
+        minimumNumberOfCalls: 3
+  retry:
+    retryAspectOrder: 2
+    instances:
+      DEPARTMENT-SERVICE:
+        maxAttempts: 3
+        waitDuration: 2s
+        registerHealthIndicator: true
