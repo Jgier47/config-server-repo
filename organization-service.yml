@@ -27,6 +27,9 @@ spring:
       web:
         exposure:
           include: "*"
+    zipkin:
+      tracing:
+        endpoint: http://zipkin:9411
   logging:
     pattern:
       level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
