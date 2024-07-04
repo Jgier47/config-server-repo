@@ -32,11 +32,6 @@ spring:
     port: 5672
     username: guest
     password: guest
-  zipkin:
-    base-url: ${SPRING_ZIPKIN_BASE_URL:http://localhost:9411}
-  sleuth:
-    sampler:
-      probability: 1.0
   logging:
     pattern:
       level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
