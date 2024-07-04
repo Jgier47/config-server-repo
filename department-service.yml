@@ -32,5 +32,7 @@ spring:
       level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
     level:
       org.springframework.web: DEBUG
+      org.hibernate: DEBUG
+      org.springframework: DEBUG
   boot:
     message: "Message example to test dynamic configuration changes in department service. Spring Cloud Bus usage"
