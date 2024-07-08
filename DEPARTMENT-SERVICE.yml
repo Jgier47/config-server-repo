@@ -1,15 +1,15 @@
 spring:
-  jpa:
-    hibernate:
-      dialect: org.hibernate.dialect.MySQL8Dialect
-      ddl-auto: update
-      format_sql: 'true'
-      show_sql: 'true'
   datasource:
     url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/department_db
     username: ${MYSQL_USER:root}
     password: ${MYSQL_PASSWORD:passwordToFill}
     driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+      dialect: org.hibernate.dialect.MySQL8Dialect
+      show_sql: true
+      format_sql: true
   server:
     port: '8080'
   boot:
