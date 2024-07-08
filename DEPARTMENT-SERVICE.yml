@@ -14,7 +14,6 @@ spring:
     port: '8080'
   boot:
     message: Message example to test dynamic configuration changes in department service.
-    Spring Cloud Bus usage
 
 eureka:
   instance:
