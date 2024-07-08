@@ -5,32 +5,6 @@ spring:
       ddl-auto: update
       format_sql: 'true'
       show_sql: 'true'
-eureka:
-  instance:
-    lease-renewal-interval-in-seconds: 5
-  client:
-    service-url:
-      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka/}
-  management:
-    endpoints:
-      web:
-        exposure:
-          include: '*'
-    tracing:
-      sampling:
-        probability: '1.0'
-  boot:
-    message: Message example to test dynamic configuration changes in department service.
-      Spring Cloud Bus usage
-  logging:
-    level:
-      org:
-        hibernate: DEBUG
-        springframework:
-          web: DEBUG
-          nodeValue: DEBUG
-    pattern:
-      level: '%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]'
   datasource:
     password: ${MYSQL_PASSWORD:passwordToFill}
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -38,3 +12,33 @@ eureka:
     url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/department_db
   server:
     port: '8080'
+
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 5
+  client:
+    service-url:
+      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka/}
+
+logging:
+  level:
+    org:
+      hibernate: DEBUG
+      springframework:
+        web: DEBUG
+        nodeValue: DEBUG
+  pattern:
+    level: '%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]'
+
+boot:
+  message: Message example to test dynamic configuration changes in department service.
+    Spring Cloud Bus usage
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  tracing:
+    sampling:
+      probability: '1.0'
