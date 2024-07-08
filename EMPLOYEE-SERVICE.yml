@@ -4,8 +4,6 @@ spring:
     username: ${MYSQL_USER:root}
     password: ${MYSQL_PASSWORD:passwordToFill}
     driver-class-name: com.mysql.cj.jdbc.Driver
-  boot:
-    message: "Message example to test dynamic configuration changes in employee service. Spring Cloud Bus usage"
   jpa:
     hibernate:
       ddl-auto: update
@@ -19,6 +17,8 @@ spring:
     port: 5672
     host: ${RABBIT_MQ_HOST:localhost}
     username: guest
+  boot:
+    message: "Message example to test dynamic configuration changes in employee service - 2. Spring Cloud Bus usage"
 eureka:
   instance:
     lease-renewal-interval-in-seconds: 5
