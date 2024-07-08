@@ -12,6 +12,9 @@ spring:
     url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/department_db
   server:
     port: '8080'
+  boot:
+    message: Message example to test dynamic configuration changes in department service.
+    Spring Cloud Bus usage
 
 eureka:
   instance:
@@ -29,10 +32,6 @@ logging:
         nodeValue: DEBUG
   pattern:
     level: '%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]'
-
-boot:
-  message: Message example to test dynamic configuration changes in department service.
-    Spring Cloud Bus usage
 
 management:
   endpoints:
