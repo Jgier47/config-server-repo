@@ -17,9 +17,8 @@ spring:
   rabbitmq:
     password: guest
     port: 5672
-    host: host: ${RABBIT_MQ_HOST:localhost}
+    host: ${RABBIT_MQ_HOST:localhost}
     username: guest
-
 eureka:
   instance:
     lease-renewal-interval-in-seconds: 5
