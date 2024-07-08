@@ -12,36 +12,28 @@ spring:
       format_sql: true
   server:
     port: 8081
+
 eureka:
   instance:
     lease-renewal-interval-in-seconds: 5
   client:
     service-url:
       defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka/}
-  management:
-    tracing:
-      sampling:
-        probability: 1.0
-    endpoints:
-      web:
-        exposure:
-          include: "*"
-    health:
-      circuitbreakers:
-        enabled: true
-    endpoint:
-      health:
-        show-details: always
-  logging:
-    pattern:
-      level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
-    level:
-      org.springframework.web: DEBUG
-  boot:
-    message: "Message example to test dynamic configuration changes in employee service. Spring Cloud Bus usage"
+
+logging:
+  pattern:
+    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+  level:
+    org.springframework.web: DEBUG
+
+boot:
+  message: "Message example to test dynamic configuration changes in employee service. Spring Cloud Bus usage"
 
 # Actuator endpoints for Circuit Breaker
 management:
+  tracing:
+    sampling:
+      probability: 1.0
   health:
     circuitbreakers:
       enabled: true
